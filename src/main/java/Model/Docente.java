@@ -32,7 +32,8 @@ public class Docente extends Pessoa implements Serializable {
     private Cadeira cadeira;
 
 
-
+    @ManyToOne
+    private User usuario;
 
     public Docente() {
     }
@@ -83,5 +84,14 @@ public class Docente extends Pessoa implements Serializable {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    public User getUsuario(){
+        return usuario;
+    }
+
+    public void setUsuario(User usuario){
+        this.usuario=usuario;
+    }
+
 
 }

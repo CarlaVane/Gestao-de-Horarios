@@ -8,17 +8,21 @@ import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Carla Morais
  */
-public class Admin implements Serializable{
+public class Admin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     private String nome;
+
+    @ManyToOne
+    private User usuario;
 
     public long getId() {
         return id;
@@ -35,6 +39,13 @@ public class Admin implements Serializable{
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
+    public User getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
+    }
 
 }

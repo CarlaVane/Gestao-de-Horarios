@@ -30,7 +30,7 @@ public class User implements Serializable {
 
     @Column(name = "senha")
     private String senha;
-
+ 
     @Column(name = "nivel_acesso")
     private int nivelAcesso;
 
@@ -49,6 +49,24 @@ public class User implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public void setEmail(String email){
+        this.email=email;
+
+    }
+
+    public String getSenha(){
+        return senha;
+    }
+
+    public void setSenha(String senha){
+        this.senha=senha;
+    }
+    
 
    
 }
