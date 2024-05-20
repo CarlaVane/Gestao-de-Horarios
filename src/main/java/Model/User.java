@@ -25,14 +25,8 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "nome_do_Usuario")
-    private String nomeDeUsuario;
-
-    @OneToOne
-    private Docente docente;
-    
-    @OneToOne
-    private Admin admin;
+    @Column(name="email")
+    private String email;
 
     @Column(name = "senha")
     private String senha;
@@ -56,12 +50,5 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getNomeDeUsuario() {
-        return nomeDeUsuario;
-    }
-
-    public void setNomeDeUsuario(String nomeDeUsuario) {
-        this.nomeDeUsuario = nomeDeUsuario;
-    }
-
+   
 }
