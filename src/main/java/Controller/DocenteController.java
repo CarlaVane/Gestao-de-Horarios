@@ -5,7 +5,7 @@
 package Controller;
 
 import Model.Docente;
-import Model.Role;
+import Util.Role;
 import Model.User;
 import Service.DocenteService;
 import View.ViewCadastroDocente;

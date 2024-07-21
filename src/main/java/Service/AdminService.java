@@ -4,6 +4,8 @@
  */
 package Service;
 
+
+
 import Model.Admin;
 import Model.User;
 import Util.Connection;
@@ -24,7 +26,12 @@ public class AdminService {
 
     public AdminService() {
         this.em = Connection.getEntityManager();
-        this.userService = new UserService(em); // Inicializando userService
+        this.userService = new UserService(em);
+    }
+
+    public AdminService(EntityManager em) {
+        this.em = Connection.getEntityManager();
+        this.userService = new UserService(em);
     }
 
     public boolean salvarAdmin(Admin admin) {
@@ -44,10 +51,22 @@ public class AdminService {
     }
 
     public Admin buscarPorID(Long id) {
+        if (id == null) {
+            System.out.println("ID fornecido é nulo.");
+            return null;
+        }
+
         try {
-            return em.find(Admin.class, id);
+            Admin admin = em.find(Admin.class, id);
+            if (admin == null) {
+                System.out.println("Administrador com ID " + id + " não encontrado.");
+            } else {
+                System.out.println("Administrador encontrado: " + admin.getNome());
+            }
+            return admin;
         } catch (PersistenceException ex) {
-            System.out.println("Erro na Classe AdminService ao buscar por ID: " + ex.getMessage());
+            System.out.println("Erro ao buscar administrador por ID: " + ex.getMessage());
+            ex.printStackTrace(); // Fornece mais detalhes sobre o erro
             return null;
         }
     }
@@ -162,8 +181,8 @@ public class AdminService {
             return 0;
         }
     }
-    
-       public int getSalaCount() {
+
+    public int getSalaCount() {
         try {
             Query query = em.createQuery("SELECT COUNT(s) FROM Sala_de_Aula s");
             return ((Long) query.getSingleResult()).intValue();
@@ -172,8 +191,8 @@ public class AdminService {
             return 0;
         }
     }
-       
-       public int getAulaCount() {
+
+    public int getAulaCount() {
         try {
             Query query = em.createQuery("SELECT COUNT(a) FROM Aula a");
             return ((Long) query.getSingleResult()).intValue();
@@ -182,5 +201,42 @@ public class AdminService {
             return 0;
         }
     }
-       
+
+public boolean atualizarSenhaAdmin(Long adminId, String novaSenha) {
+    EntityTransaction transaction = em.getTransaction();
+    try {
+        transaction.begin();
+        Admin admin = em.find(Admin.class, adminId);
+        if (admin == null) {
+            System.out.println("Administrador com ID " + adminId + " não encontrado.");
+            transaction.rollback();
+            return false;
+        }
+
+        User usuario = admin.getUsuario();
+        if (usuario == null) {
+            System.out.println("Usuário associado ao administrador com ID " + adminId + " não encontrado.");
+            transaction.rollback();
+            return false;
+        }
+
+        usuario.setSenha(novaSenha);
+        em.merge(usuario);
+        transaction.commit();
+        System.out.println("Senha atualizada com sucesso para o usuário com ID " + adminId);
+        return true;
+    } catch (PersistenceException ex) {
+        System.out.println("Erro ao atualizar a senha: " + ex.getMessage());
+        if (transaction.isActive()) {
+            transaction.rollback();
+        }
+        return false;
+    } finally {
+        if (em != null && em.isOpen()) {
+            em.close();
+        }
+    }
 }
+
+}
+    

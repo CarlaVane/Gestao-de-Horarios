@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Util.Role;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +23,13 @@ public class Admin extends Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     
+    
+    
     @ManyToOne
     private User usuario;
 
+    
+     
     public Admin() {
         this.usuario = new User();
         this.usuario.setNivelAcesso(Role.ADMIN);

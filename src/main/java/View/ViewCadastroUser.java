@@ -7,7 +7,7 @@ package View;
 import Controller.AdminController;
 import Model.Admin;
 import Model.GeradorSenha;
-import Model.Role;
+import Util.Role;
 import Model.User;
 import Service.AdminService;
 import javax.swing.JOptionPane;

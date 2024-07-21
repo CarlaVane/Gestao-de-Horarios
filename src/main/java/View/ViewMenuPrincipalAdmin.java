@@ -133,7 +133,7 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         });
         jMenu2.add(jMenu1);
 
-        jMenu4.setText("Recuperação de Senha");
+        jMenu4.setText("Mudar Senha");
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu4MouseClicked(evt);
@@ -397,8 +397,18 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuSalaMouseClicked
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        // TODO add your handling code here:
-        dispose();
+       AdminController admin = new AdminController();
+      
+               
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (opcao == JOptionPane.YES_OPTION) {
+             admin.realizarLogout();
+            Login login = new Login();
+            login.setVisible(true);
+            dispose();
+
+    }
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
@@ -418,8 +428,8 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         // TODO add your handling code here:
           jDesktop1.removeAll();
-        ViewCadastroUser user = new    ViewCadastroUser();
-         jDesktop1.add(user).setVisible(true);
+        ViewMudarSenha senha = new    ViewMudarSenha();
+         jDesktop1.add(senha).setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void MenuUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUserMouseClicked

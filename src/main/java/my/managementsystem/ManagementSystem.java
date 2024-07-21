@@ -1,6 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+
+
 
 package my.managementsystem;
 
@@ -9,7 +8,7 @@ package my.managementsystem;
 import Controller.HorarioController;
 import View.Login;
 
-/**
+/**-----
  *
  * @author Carla Morais
  */

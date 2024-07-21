@@ -5,7 +5,7 @@
 package Controller;
 
 import Model.GeradorSenha;
-import Model.Role;
+import Util.Role;
 import Model.User;
 import Service.UserService;
 import java.util.List;

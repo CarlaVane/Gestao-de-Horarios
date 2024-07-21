@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Util.Role;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

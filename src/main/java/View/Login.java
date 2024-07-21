@@ -4,9 +4,10 @@
  */
 package View;
 
-import Model.Role;
+import Util.Role;
 import Model.User;
 import Service.UserService;
+import Util.SessaoAdmin;
 import javax.swing.JOptionPane;
 
 /**
@@ -246,7 +247,8 @@ public class Login extends javax.swing.JFrame {
     private void btnentrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrar2ActionPerformed
         String nome = TextLogin.getText().trim();
     String senha = TextSenha.getText().trim();
-
+    
+ 
     UserService userService = new UserService();
     User autenticado = userService.autenticarUsuario(nome, senha);
 
@@ -255,6 +257,7 @@ public class Login extends javax.swing.JFrame {
 
         switch (role) {
             case ADMIN:
+                SessaoAdmin.setAdminId(autenticado.getId());
                 JOptionPane.showMessageDialog(null, "Seja Bem-Vindo Senhor Admin");
                 ViewMenuPrincipalAdmin principal = new ViewMenuPrincipalAdmin();
                 principal.setVisible(true);

@@ -9,10 +9,10 @@ import Controller.DocenteController;
 import Model.Cadeira;
 import Model.Docente;
 import Model.GeradorSenha;
-import Model.Role;
 import Model.User;
 import Service.DocenteService;
 import Util.Connection;
+import Util.Role;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -193,7 +193,6 @@ public class ViewCadastroDocente extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Cadeira Lecionada");
 
-        ComboBoxCadeiras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ComboBoxCadeiras.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 ComboBoxCadeirasAncestorAdded(evt);
@@ -480,6 +479,8 @@ public class ViewCadastroDocente extends javax.swing.JInternalFrame {
         return null;
     }
     }
+    
+   
 
     private void limparCampos() {
         TextNome.setText("");
@@ -525,7 +526,7 @@ public class ViewCadastroDocente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Role> ComBoxNivelAcesso;
-    private javax.swing.JComboBox<String> ComboBoxCadeiras;
+    private javax.swing.JComboBox<Cadeira> ComboBoxCadeiras;
     private javax.swing.JTable TabelaDocentes;
     private javax.swing.JTextField TextEmail;
     private javax.swing.JTextField TextEndereco;

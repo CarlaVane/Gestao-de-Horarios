@@ -99,6 +99,9 @@ public class CadeiraService {
             this.em.close();
         }
     }
+    
+    
+    
 
     public List<Cadeira> listarCadeiras() {
         try {
@@ -109,6 +112,18 @@ public class CadeiraService {
             return null;
         } finally {
             this.em.close();
+        }
+    }
+
+    
+      public List<Cadeira> buscarCadeirasPorCurso(Curso curso) {
+        try {
+            TypedQuery<Cadeira> query = em.createQuery("SELECT c FROM Cadeira c WHERE c.curso = :curso", Cadeira.class);
+            query.setParameter("curso", curso);
+            return query.getResultList();
+        } catch (PersistenceException ex) {
+            System.out.println("Erro ao buscar cadeiras por curso: " + ex.getMessage());
+            return null;
         }
     }
 

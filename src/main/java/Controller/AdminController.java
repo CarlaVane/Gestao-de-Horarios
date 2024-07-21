@@ -7,6 +7,7 @@ package Controller;
 import Model.Admin;
 import Model.User;
 import Service.AdminService;
+import Util.SessaoAdmin;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -59,7 +60,22 @@ public class AdminController {
             JOptionPane.showMessageDialog(null, "Erro ao excluir o administrador. Verifique o ID inserido.");
         }
     }
+    
+    
+    public void atualizarSenhaAdmin(Long adminId, String novaSenha) {
+        if (adminService.atualizarSenhaAdmin(adminId, novaSenha)) {
+            JOptionPane.showMessageDialog(null, "Senha atualizada com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar a senha.");
+        }
+    }
 
+     
+    public void realizarLogout() {
+        SessaoAdmin.clear(); 
+        JOptionPane.showMessageDialog(null, "Você saiu do sistema.");
+        
+    }
     public void exibirAdmin(DefaultTableModel modeloTabela) {
         List<Admin> listAdmin = this.adminService.listarAdmin();
 

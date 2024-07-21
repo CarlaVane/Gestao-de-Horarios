@@ -8,14 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author Carla Morais
- */
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 public class Connection {
     private static final String PERSISTENCE_UNIT_NAME = "MeuSistema-jpa";
     private static final String DATABASE_URL = "jdbc:mysql://localhost/timemanagementsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
@@ -23,7 +15,7 @@ public class Connection {
     private static final EntityManagerFactory FACTORY = createEntityManagerFactory();
 
     private static EntityManagerFactory createEntityManagerFactory() {
-        // Configurar as propriedades, incluindo a nova URL de conexão
+     
         java.util.Properties properties = new java.util.Properties();
         properties.put("javax.persistence.jdbc.url", DATABASE_URL);
 

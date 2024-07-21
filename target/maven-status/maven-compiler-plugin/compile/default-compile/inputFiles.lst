@@ -3,8 +3,8 @@ C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\m
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Model\GeradorSenha.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Service\HorarioService.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\View\ViewCadastroCadeira.java
-C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Model\Role.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Model\Admin.java
+C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Util\SessaoAdmin.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Service\AdminService.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Service\DocenteService.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Model\Cadeira.java
@@ -22,6 +22,7 @@ C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\m
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Controller\UserController.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Controller\DocenteController.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Controller\CadeiraController.java
+C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\View\ViewMudarSenha.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Util\GestaoHora.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Model\Sala_de_Aula.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Model\User.java
@@ -34,8 +35,10 @@ C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\m
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Controller\CursoController.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Service\CursoService.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\View\ViewMenuPrincipalDocente.java
+C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Util\Role.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\View\ViewSobre.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Service\Sala_de_AulaService.java
+C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\View\InformacoesDocente.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\View\ViewCadastroCurso.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Model\Curso.java
 C:\Users\Carla Morais\OneDrive\Documents\NetBeansProjects\ManagementSystem\src\main\java\Model\Pessoa.java

@@ -4,9 +4,9 @@
  */
 package Service;
 
-import Model.Role;
 import Model.User;
 import Util.Connection;
+import Util.Role;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -14,7 +14,6 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 public class UserService {
-
     private EntityManager em;
 
     public UserService() {
@@ -26,16 +25,19 @@ public class UserService {
     }
 
     public User cadastrarUsuario(User usuario) {
-
         try {
+            em.getTransaction().begin();
             em.persist(usuario);
+            em.getTransaction().commit();
             return usuario;
         } catch (PersistenceException ex) {
             ex.printStackTrace();
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
             return null;
         }
     }
-
 
     public User buscarUsuario(Long id) {
         try {
@@ -43,10 +45,6 @@ public class UserService {
         } catch (PersistenceException ex) {
             System.out.println("Erro na Classe UserService ao buscar por ID: " + ex.getMessage());
             return null;
-        } finally {
-            if (em.isOpen()) {
-                em.close();
-            }
         }
     }
 
@@ -70,10 +68,6 @@ public class UserService {
                 transaction.rollback();
             }
             return false;
-        } finally {
-            if (em.isOpen()) {
-                em.close();
-            }
         }
     }
 
@@ -84,10 +78,6 @@ public class UserService {
         } catch (PersistenceException ex) {
             System.out.println("Ocorreu um erro na exceção ao listar usuários: " + ex.getMessage());
             return null;
-        } finally {
-            if (em.isOpen()) {
-                em.close();
-            }
         }
     }
 
@@ -102,7 +92,7 @@ public class UserService {
             if (!resultList.isEmpty()) {
                 return resultList.get(0);
             } else {
-                return null; //
+                return null;
             }
         } catch (PersistenceException ex) {
             System.out.println("Erro na Classe UserService ao autenticar usuário: " + ex.getMessage());
@@ -115,7 +105,6 @@ public class UserService {
         usuario.setEmail(email);
         usuario.setSenha(senha);
         usuario.setNivelAcesso(nivelAcesso);
-
         return usuario;
     }
 }

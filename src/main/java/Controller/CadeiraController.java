@@ -58,7 +58,7 @@ public class CadeiraController {
         }
     }
 
-    public void exibirCadeira(JComboBox<String> comboBox) {
+    public void exibirCadeira(JComboBox<Cadeira> comboBox) {
         List<Cadeira> Listcadeiras = this.cadeiraService.listarCadeiras();
 
         if (Listcadeiras != null && !Listcadeiras.isEmpty()) {
@@ -86,5 +86,16 @@ public class CadeiraController {
         JOptionPane.showMessageDialog(null, "Não há Cadeiras para exibir");
     }
 }
+      
+      public void exibirCadeirasPorCurso(JComboBox<Cadeira> comboBox, Curso curso) {
+        List<Cadeira> cadeiras = cadeiraService.buscarCadeirasPorCurso(curso);
+
+        comboBox.removeAllItems();
+        if (cadeiras != null) {
+            for (Cadeira cadeira : cadeiras) {
+                comboBox.addItem(cadeira);
+            }
+        }
+    }
 
 }
