@@ -5,9 +5,9 @@
 package Controller;
 
 import Model.GeradorSenha;
-import Util.Role;
 import Model.User;
 import Service.UserService;
+import Util.Role;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -68,7 +68,7 @@ public class UserController {
             modeloTabela.setRowCount(0);
 
             for (User usuario : listUser) {
-                Object[] dados = {usuario.getId(), usuario.getId()};
+                Object[] dados = {};
                 modeloTabela.addRow(dados);
             }
         } else {

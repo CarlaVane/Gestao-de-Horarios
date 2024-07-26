@@ -231,6 +231,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Visualiza&#xe7;&#xe3;o de Usu&#xe1;rios Cadastrados"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu11MouseClicked"/>
+              </Events>
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu12">
               <Properties>

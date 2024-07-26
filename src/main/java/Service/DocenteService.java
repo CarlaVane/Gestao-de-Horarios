@@ -110,7 +110,8 @@ public class DocenteService {
             }
             return false;
         } finally {
-            // Não fechar o EntityManager se for gerenciado pelo contêiner
+       
+            
         }
     }
 
@@ -119,27 +120,32 @@ public class DocenteService {
         try {
             transaction.begin();
 
-            // Primeiramente, persistir ou mesclar a entidade Docente e suas associações
+           
+            
             Cadeira cadeira = docente.getCadeira();
             if (cadeira != null) {
-                if (cadeira.getId() != 0) { // Verifica se a cadeira já tem um ID (portanto, já existe)
-                    cadeira = em.merge(cadeira);  // Use merge para entidades existentes
+                if (cadeira.getId() != 0) { 
+                    
+                    cadeira = em.merge(cadeira);
+                    
                 } else {
-                    em.persist(cadeira);  // Persist apenas para novas entidades
+                    em.persist(cadeira); 
+                    
                 }
             }
 
-            if (docente.getId() != 0) { // Verifica se o docente já tem um ID (portanto, já existe)
+            if (docente.getId() != 0) { 
                 docente = em.merge(docente);
             } else {
                 em.persist(docente);
             }
 
-            // Em seguida, criar e associar o novo usuário ao Docente
+         
+            
             User novoUsuario = userService.cadastrarUsuario(usuario);
             docente.setUsuario(novoUsuario);
 
-            // Atualizar o Docente para refletir a nova associação
+         
             em.merge(docente);
 
             transaction.commit();
@@ -151,7 +157,7 @@ public class DocenteService {
             }
             return false;
         } finally {
-            // Não fechar o EntityManager se for gerenciado pelo contêiner
+       
         }
     }
 
@@ -163,7 +169,7 @@ public class DocenteService {
             System.out.println("Erro na Classe DocenteService ao listar docentes: " + ex.getMessage());
             return null;
         } finally {
-            // Não fechar o EntityManager se for gerenciado pelo contêiner
+         
         }
     }
 }

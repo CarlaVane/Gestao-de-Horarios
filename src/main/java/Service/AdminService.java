@@ -123,24 +123,30 @@ public class AdminService {
     public boolean cadastrarAdminComUsuario(Admin admin, User usuario) {
         EntityTransaction transaction = em.getTransaction();
         try {
-            transaction.begin();
-            User novoUsuario = userService.cadastrarUsuario(usuario);
-            admin.setUsuario(novoUsuario);
+           
             if (admin.getId() != 0) {
                 em.merge(admin);
             } else {
                 em.persist(admin);
             }
+             transaction.begin();
+            User novoUsuario = userService.cadastrarUsuario(usuario);
+            admin.setUsuario(novoUsuario);
+            em.merge(admin);
             transaction.commit();
             return true;
-        } catch (PersistenceException ex) {
-            System.out.println("Erro na Classe AdminService ao cadastrar administrador: " + ex.getMessage());
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
+        }catch(PersistenceException ex){
+            System.out.println("Erro na classe AdminService ao cadastrar Admin com usuároo"+ex);
+             
             return false;
+        }finally{
+            if(em!=null && em.isOpen())
+              em.close();
         }
+        
     }
+    
+    
 
     public List<Admin> listarAdmin() {
         try {

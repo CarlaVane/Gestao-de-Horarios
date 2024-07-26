@@ -24,7 +24,7 @@ public class UserService {
         this.em = em;
     }
 
-    public User cadastrarUsuario(User usuario) {
+   public User cadastrarUsuario(User usuario) {
         try {
             em.getTransaction().begin();
             em.persist(usuario);

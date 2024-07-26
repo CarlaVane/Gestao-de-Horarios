@@ -266,6 +266,11 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         jMenu9.setText("Consulta e Relatórios");
 
         jMenu11.setText("Visualização de Usuários Cadastrados");
+        jMenu11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu11MouseClicked(evt);
+            }
+        });
         jMenu9.add(jMenu11);
 
         jMenu12.setText("Relatórios de horários disponíveis");
@@ -438,6 +443,12 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         ViewCadastroUser user = new ViewCadastroUser();
         jDesktop1.add(user).setVisible(true);
     }//GEN-LAST:event_MenuUserMouseClicked
+
+    private void jMenu11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu11MouseClicked
+    jDesktop1.removeAll();
+    ViewUsuariosCadastrados usuarios = new ViewUsuariosCadastrados();
+    jDesktop1.add(usuarios).setVisible(true);
+    }//GEN-LAST:event_jMenu11MouseClicked
 
     
     /**

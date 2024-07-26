@@ -39,6 +39,7 @@ Model\Sala_de_Aula.class
 View\ViewCadastroDocente$1.class
 View\ViewMudarSenha.class
 View\ViewMenuPrincipalAdmin$19.class
+View\ViewMenuPrincipalAdmin$22.class
 View\ViewMenuPrincipalAdmin$7.class
 View\ViewMudarSenha$1.class
 View\ViewCadastroCadeira$9.class
@@ -81,8 +82,10 @@ View\ViewCadastroAula$5.class
 Controller\Sala_de_AulaController.class
 View\Login$5.class
 View\ViewMenuPrincipalDocente.class
+View\ViewUsuariosCadastrados.class
 Model\Curso.class
 View\Login$10.class
+View\ViewUsuariosCadastrados$1.class
 View\ViewCadastroCurso$3.class
 View\ViewMenuPrincipalAdmin$2.class
 View\ViewCadastroCadeira$12.class
