@@ -4,19 +4,21 @@
  */
 package View;
 
+import Controller.AdminController;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Carla Morais
  */
-public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
+public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewMenuPrincipal
      */
-    public ViewMenuPrincipalDocente() {
-        initComponents();
+    public ViewMenuPrincipalAdmin() {
+        initComponents(); 
+       
     }
 
     /**
@@ -28,155 +30,89 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jDesktop1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        PanelAulasHoje = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        PanelHorario = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         Sair = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         MenuDocente = new javax.swing.JMenu();
         MenuCadeira = new javax.swing.JMenu();
         MenuSala = new javax.swing.JMenuItem();
-        MenuMarcacaoAula = new javax.swing.JMenuItem();
-        MenuHorario = new javax.swing.JMenuItem();
         MenuCurso = new javax.swing.JMenu();
+        MenuUser = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        MenuHorario = new javax.swing.JMenuItem();
+        MenuMarcacaoAula = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu11 = new javax.swing.JMenu();
+        jMenu12 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+
+        jPanel8.setBackground(new java.awt.Color(204, 255, 255));
+
+        jLabel7.setText("Docentes");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel7)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addContainerGap())
+        );
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setText("0");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jDesktop1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 204, 255));
-        jLabel1.setText("Seja Bem-Vindo, Docente");
-
-        jPanel2.setBackground(new java.awt.Color(153, 255, 255));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Aulas Hoje");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(293, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel2)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout PanelAulasHojeLayout = new javax.swing.GroupLayout(PanelAulasHoje);
-        PanelAulasHoje.setLayout(PanelAulasHojeLayout);
-        PanelAulasHojeLayout.setHorizontalGroup(
-            PanelAulasHojeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        PanelAulasHojeLayout.setVerticalGroup(
-            PanelAulasHojeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelAulasHojeLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 236, Short.MAX_VALUE))
-        );
-
-        jPanel6.setBackground(new java.awt.Color(153, 255, 255));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Horário");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel3)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        jButton1.setText("Visualizar horário Semanal");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Visualizar  horário Mensal");
-
-        javax.swing.GroupLayout PanelHorarioLayout = new javax.swing.GroupLayout(PanelHorario);
-        PanelHorario.setLayout(PanelHorarioLayout);
-        PanelHorarioLayout.setHorizontalGroup(
-            PanelHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(PanelHorarioLayout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addGroup(PanelHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        PanelHorarioLayout.setVerticalGroup(
-            PanelHorarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelHorarioLayout.createSequentialGroup()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
-        );
-
         javax.swing.GroupLayout jDesktop1Layout = new javax.swing.GroupLayout(jDesktop1);
         jDesktop1.setLayout(jDesktop1Layout);
         jDesktop1Layout.setHorizontalGroup(
             jDesktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktop1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jDesktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktop1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jDesktop1Layout.createSequentialGroup()
-                        .addGap(0, 50, Short.MAX_VALUE)
-                        .addComponent(PanelAulasHoje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addComponent(PanelHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(116, 116, 116))))
+            .addGap(0, 713, Short.MAX_VALUE)
         );
         jDesktop1Layout.setVerticalGroup(
             jDesktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktop1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addGroup(jDesktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanelHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PanelAulasHoje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
+            .addGap(0, 442, Short.MAX_VALUE)
         );
 
         Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/home.png"))); // NOI18N
@@ -189,7 +125,7 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
 
         jMenu2.setText("Sistema");
 
-        jMenu1.setText("Sair");
+        jMenu1.setText("Logout");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);
@@ -197,11 +133,16 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
         });
         jMenu2.add(jMenu1);
 
-        jMenu4.setText("Informações pessoais");
+        jMenu4.setText("Mudar Senha");
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
         jMenu2.add(jMenu4);
 
-        jMenu5.setText("Mudar Senha");
-        jMenu2.add(jMenu5);
+        jMenu10.setText("Informações Pessoais");
+        jMenu2.add(jMenu10);
 
         jMenuBar1.add(jMenu2);
 
@@ -259,34 +200,6 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
         });
         jMenu3.add(MenuSala);
 
-        MenuMarcacaoAula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/livro.png"))); // NOI18N
-        MenuMarcacaoAula.setText("Agendamento de Aula");
-        MenuMarcacaoAula.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuMarcacaoAulaMouseClicked(evt);
-            }
-        });
-        MenuMarcacaoAula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuMarcacaoAulaActionPerformed(evt);
-            }
-        });
-        jMenu3.add(MenuMarcacaoAula);
-
-        MenuHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/timetable.png"))); // NOI18N
-        MenuHorario.setText("Horário");
-        MenuHorario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuHorarioMouseClicked(evt);
-            }
-        });
-        MenuHorario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHorarioActionPerformed(evt);
-            }
-        });
-        jMenu3.add(MenuHorario);
-
         MenuCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/graduacao.png"))); // NOI18N
         MenuCurso.setText("Curso");
         MenuCurso.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -301,7 +214,69 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
         });
         jMenu3.add(MenuCurso);
 
+        MenuUser.setText("Administrador");
+        MenuUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuUserMouseClicked(evt);
+            }
+        });
+        jMenu3.add(MenuUser);
+
         jMenuBar1.add(jMenu3);
+
+        jMenu5.setText("Gerenciamento de Horários");
+
+        MenuHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/timetable.png"))); // NOI18N
+        MenuHorario.setText("Criação e edição de horários");
+        MenuHorario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuHorarioMouseClicked(evt);
+            }
+        });
+        MenuHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuHorarioActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MenuHorario);
+
+        MenuMarcacaoAula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/livro.png"))); // NOI18N
+        MenuMarcacaoAula.setText("Agendamento de Aula");
+        MenuMarcacaoAula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuMarcacaoAulaMouseClicked(evt);
+            }
+        });
+        MenuMarcacaoAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuMarcacaoAulaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MenuMarcacaoAula);
+
+        jMenu7.setText("Visualização de horário");
+
+        jMenu8.setText("Docente");
+        jMenu7.add(jMenu8);
+
+        jMenu5.add(jMenu7);
+
+        jMenuBar1.add(jMenu5);
+
+        jMenu9.setText("Consulta e Relatórios");
+
+        jMenu11.setText("Visualização de Usuários Cadastrados");
+        jMenu11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu11MouseClicked(evt);
+            }
+        });
+        jMenu9.add(jMenu11);
+
+        jMenu12.setText("Relatórios de horários disponíveis");
+        jMenu9.add(jMenu12);
+
+        jMenuBar1.add(jMenu9);
 
         jMenu6.setText("Sobre");
         jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -322,15 +297,11 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktop1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktop1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktop1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktop1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -350,14 +321,11 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuDocenteMouseClicked
 
     private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
-        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
+      
     
-    if (opcao == JOptionPane.YES_OPTION) {
-        Login login = new Login();
-        login.setVisible(true);
-        dispose();
-
-    }
+    jDesktop1.removeAll();
+    HomeAdmin admin = new HomeAdmin();
+    jDesktop1.add(admin).setVisible(true);
     }//GEN-LAST:event_SairMouseClicked
 
     private void MenuCadeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadeiraActionPerformed
@@ -434,8 +402,18 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuSalaMouseClicked
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        // TODO add your handling code here:
-        dispose();
+       AdminController admin = new AdminController();
+      
+               
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (opcao == JOptionPane.YES_OPTION) {
+             admin.realizarLogout();
+            Login login = new Login();
+            login.setVisible(true);
+            dispose();
+
+    }
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
@@ -452,10 +430,27 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
         jDesktop1.add(sobre).setVisible(true);
     }//GEN-LAST:event_jMenu6ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+          jDesktop1.removeAll();
+        ViewMudarSenha senha = new    ViewMudarSenha();
+         jDesktop1.add(senha).setVisible(true);
+    }//GEN-LAST:event_jMenu4MouseClicked
 
+    private void MenuUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUserMouseClicked
+        // TODO add your handling code here:
+        jDesktop1.removeAll();
+        ViewCadastroUser user = new ViewCadastroUser();
+        jDesktop1.add(user).setVisible(true);
+    }//GEN-LAST:event_MenuUserMouseClicked
+
+    private void jMenu11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu11MouseClicked
+    jDesktop1.removeAll();
+    ViewUsuariosCadastrados usuarios = new ViewUsuariosCadastrados();
+    jDesktop1.add(usuarios).setVisible(true);
+    }//GEN-LAST:event_jMenu11MouseClicked
+
+    
     /**
      * @param args the command line arguments
      */
@@ -473,13 +468,13 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewMenuPrincipalDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMenuPrincipalAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewMenuPrincipalDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMenuPrincipalAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewMenuPrincipalDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMenuPrincipalAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewMenuPrincipalDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMenuPrincipalAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -487,10 +482,12 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewMenuPrincipalDocente().setVisible(true);
+                new ViewMenuPrincipalAdmin().setVisible(true);
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu MenuCadeira;
@@ -499,23 +496,25 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuHorario;
     private javax.swing.JMenuItem MenuMarcacaoAula;
     private javax.swing.JMenuItem MenuSala;
-    private javax.swing.JPanel PanelAulasHoje;
-    private javax.swing.JPanel PanelHorario;
+    private javax.swing.JMenu MenuUser;
     private javax.swing.JMenu Sair;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jDesktop1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     // End of variables declaration//GEN-END:variables
 }
