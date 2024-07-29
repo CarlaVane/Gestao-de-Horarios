@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import Model.Admin;
+import Model.Administrador;
 import Model.User;
 import Service.AdminService;
 import Util.SessaoAdmin;
@@ -37,7 +37,7 @@ public class AdminController {
    public int getAulaCount(){
        return adminService.getAulaCount();
    }
-    public void cadastrarAdminComUsuario(Admin admin, User usuario) {
+    public void cadastrarAdminComUsuario(Administrador admin, User usuario) {
         if (this.adminService.cadastrarAdminComUsuario(admin, usuario)) {
             JOptionPane.showMessageDialog(null, "Administrador e o usuário foram cadastrados com sucesso.");
         } else {
@@ -45,8 +45,8 @@ public class AdminController {
         }
     }
 
-    public void atualizarAdmin(Long id, Admin adminAtualizado) {
-        if (this.adminService.atualizarDados(id, adminAtualizado)) {
+    public void atualizarAdmin(Administrador adminAtualizado) {
+        if (this.adminService.updateAdmin(adminAtualizado)) {
             JOptionPane.showMessageDialog(null, "Os dados do administrador foram atualizados com sucesso.");
         } else {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados do administrador.");
@@ -77,12 +77,12 @@ public class AdminController {
         
     }
     public void exibirAdmin(DefaultTableModel modeloTabela) {
-        List<Admin> listAdmin = this.adminService.listarAdmin();
+        List<Administrador> listAdmin = this.adminService.listarAdmin();
 
         if (listAdmin != null && !listAdmin.isEmpty()) {
             modeloTabela.setRowCount(0);
 
-            for (Admin admin : listAdmin) {
+            for (Administrador admin : listAdmin) {
                 Object[] dados = {admin.getId(), admin.getNome(), admin.getTelefone(), admin.getEmail()};
                 modeloTabela.addRow(dados);
             }

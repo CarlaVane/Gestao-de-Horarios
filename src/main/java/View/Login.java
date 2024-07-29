@@ -8,6 +8,7 @@ import Util.Role;
 import Model.User;
 import Service.UserService;
 import Util.SessaoAdmin;
+import Util.SessaoDocente;
 import javax.swing.JOptionPane;
 
 /**
@@ -264,6 +265,7 @@ public class Login extends javax.swing.JFrame {
                 dispose();
                 break;
             case DOCENTE:
+                SessaoDocente.setdocenteId(autenticado.getId());
                 JOptionPane.showMessageDialog(null, "Seja Bem-Vindo Docente");
                 ViewMenuPrincipalDocente view = new ViewMenuPrincipalDocente();
                 view.setVisible(true);

@@ -8,6 +8,8 @@ import Model.Docente;
 import Util.Role;
 import Model.User;
 import Service.DocenteService;
+import Util.SessaoAdmin;
+import Util.SessaoDocente;
 import View.ViewCadastroDocente;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -65,6 +67,21 @@ public class DocenteController {
         }
     }
 
+    
+     public void atualizarSenhaDocente(Long docenteId, String novaSenha) {
+        if (docenteService.atualizarSenhaDocente(docenteId, novaSenha)) {
+            JOptionPane.showMessageDialog(null, "Senha atualizada com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar a senha.");
+        }
+    }
+
+     
+    public void realizarLogout() {
+        SessaoDocente.clear();
+        JOptionPane.showMessageDialog(null, "Você saiu do sistema.");
+        
+    }
     public void exibirDocente(JComboBox<String> comboBox) {
         List<Docente> Listdocente = this.docenteService.listarDocentes();
 

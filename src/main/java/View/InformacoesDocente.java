@@ -4,6 +4,11 @@
  */
 package View;
 
+import Controller.DocenteController;
+import Model.Docente;
+import Service.DocenteService;
+import Util.SessaoDocente;
+
 /**
  *
  * @author Carla Morais
@@ -13,8 +18,11 @@ public class InformacoesDocente extends javax.swing.JInternalFrame {
     /**
      * Creates new form InformacoesDocente
      */
+     private Docente docente;
     public InformacoesDocente() {
         initComponents();
+        carregarDocente();
+        preencherDados();
     }
 
     /**
@@ -26,21 +34,189 @@ public class InformacoesDocente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        textnome = new javax.swing.JTextField();
+        textEndereco = new javax.swing.JTextField();
+        texttelefone = new javax.swing.JTextField();
+        textExperiencia = new javax.swing.JTextField();
+        textEspecializacao = new javax.swing.JTextField();
+        textEmail = new javax.swing.JTextField();
+        btnAlterar = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Dados docente");
+
+        jLabel1.setText("Nome");
+
+        jLabel2.setText("Telefone");
+
+        jLabel3.setText("Email");
+
+        jLabel4.setText("Endereço");
+
+        jLabel5.setText("Experiência");
+
+        jLabel6.setText("Especialização");
+
+        textEspecializacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textEspecializacaoActionPerformed(evt);
+            }
+        });
+
+        btnAlterar.setText("Alterar");
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 555, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textnome, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(texttelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                        .addGap(362, 362, 362))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textExperiencia, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEspecializacao, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(222, 222, 222)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(texttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(textExperiencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(textEspecializacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void textEspecializacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textEspecializacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textEspecializacaoActionPerformed
+
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        // TODO add your handling code here:
+        AlterarDados();
+    }//GEN-LAST:event_btnAlterarMouseClicked
+
+     private void carregarDocente() {
+        Long docenteId = SessaoDocente.getdocenteId();
+        if (docenteId != null) {
+            DocenteService docenteService = new DocenteService();
+                    
+                    
+            this.docente = docenteService.buscarDocente(docenteId);
+        }
+    }
+    
+    
+    private void preencherDados() {
+        if (docente != null) {
+            textnome.setText(docente.getNome());
+            textEmail.setText(docente.getEmail());
+            texttelefone.setText(docente.getTelefone());
+            textEndereco.setText(docente.getEndereco());
+            textEspecializacao.setText(docente.getEspecializacao());
+            textExperiencia.setText(String.valueOf(docente.getExperiencia()));
+            
+        }
+    }
+
+    private void AlterarDados(){
+        String nome = textnome.getText();
+        String email = textEmail.getText();
+        String telefone = texttelefone.getText();
+        String endereco = textEndereco.getText();
+        String especializacao = textEspecializacao.getText();
+        String experienciaTexto = textExperiencia.getText();
+        int experiencia = Integer.parseInt(experienciaTexto);
+         
+        
+            docente.setNome(nome);
+        docente.setEmail(email);
+        docente.setTelefone(telefone);
+        docente.setEndereco(endereco);
+        docente.setEspecializacao(especializacao);
+        docente.setExperiencia(experiencia);
+       
+
+        DocenteController docenteController = new DocenteController();
+     docenteController.actualizarDocente(docente);
+    }
+     
+        
+        
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField textEmail;
+    private javax.swing.JTextField textEndereco;
+    private javax.swing.JTextField textEspecializacao;
+    private javax.swing.JTextField textExperiencia;
+    private javax.swing.JTextField textnome;
+    private javax.swing.JTextField texttelefone;
     // End of variables declaration//GEN-END:variables
 }

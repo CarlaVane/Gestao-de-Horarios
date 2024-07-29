@@ -4,17 +4,26 @@
  */
 package View;
 
+import Controller.AdminController;
+import Model.Administrador;
+import Service.AdminService;
+import Util.SessaoAdmin;
+
 /**
  *
  * @author Carla Morais
  */
-public class InformacoesDocente extends javax.swing.JInternalFrame {
+public class InformacoesAdmin extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form InformacoesDocente
      */
-    public InformacoesDocente() {
+    private Administrador administrador;
+
+    public InformacoesAdmin() {
         initComponents();
+        carregarAdmin();
+        preencherDados();
     }
 
     /**
@@ -26,21 +35,120 @@ public class InformacoesDocente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        textnome = new javax.swing.JTextField();
+        texttelefone = new javax.swing.JTextField();
+        textEmail = new javax.swing.JTextField();
+        btnAlterar = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Dados docente");
+
+        jLabel1.setText("Nome");
+
+        jLabel2.setText("Telefone");
+
+        jLabel3.setText("Email");
+
+        btnAlterar.setText("Alterar");
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 555, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(textnome, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(texttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(72, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(texttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        // TODO add your handling code here:
+        AlterarDados();
+    }//GEN-LAST:event_btnAlterarMouseClicked
+
+    private void carregarAdmin() {
+        Long adminId = SessaoAdmin.getAdminId();
+        if (adminId != null) {
+            AdminService admin = new AdminService();
+
+            this.administrador = admin.buscarPorID(adminId);
+        }
+    }
+
+    private void preencherDados() {
+        if (administrador != null) {
+            textnome.setText(administrador.getNome());
+            textEmail.setText(administrador.getEmail());
+            texttelefone.setText(administrador.getTelefone());
+
+        }
+    }
+
+    private void AlterarDados() {
+        String nome = textnome.getText();
+        String email = textEmail.getText();
+        String telefone = texttelefone.getText();
+
+        administrador.setNome(nome);
+        administrador.setEmail(email);
+        administrador.setTelefone(telefone);
+
+        AdminController adminController = new AdminController();
+        adminController.atualizarAdmin(administrador);
+    }
+
+        
+        
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField textEmail;
+    private javax.swing.JTextField textnome;
+    private javax.swing.JTextField texttelefone;
     // End of variables declaration//GEN-END:variables
 }

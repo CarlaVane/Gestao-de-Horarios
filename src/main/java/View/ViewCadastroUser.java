@@ -5,11 +5,12 @@
 package View;
 
 import Controller.AdminController;
-import Model.Admin;
-import Model.GeradorSenha;
+import Model.Administrador;
+import Util.GeradorSenha;
 import Util.Role;
 import Model.User;
 import Service.AdminService;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -242,7 +243,7 @@ public class ViewCadastroUser extends javax.swing.JInternalFrame {
     }
 
     private void salvar() {
-
+        
         String nome = textNome.getText();
         String email = textEmail.getText();
         String telefone = textTelefone.getText();
@@ -263,7 +264,8 @@ public class ViewCadastroUser extends javax.swing.JInternalFrame {
         usuario.setNivelAcesso(nivelAcesso);
 
         //Administrador
-        Admin novoAdmin = new Admin();
+        
+        Administrador novoAdmin = new Administrador();
         novoAdmin.setNome(nome);
         novoAdmin.setTelefone(telefone);
         novoAdmin.setUsuario(usuario);

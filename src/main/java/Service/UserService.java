@@ -23,22 +23,26 @@ public class UserService {
     public UserService(EntityManager em) {
         this.em = em;
     }
-
-   public User cadastrarUsuario(User usuario) {
+ public User cadastrarUsuario(User usuario) {
+        EntityTransaction transaction = null;
         try {
-            em.getTransaction().begin();
+            if (!this.em.getTransaction().isActive()) {
+                transaction = this.em.getTransaction();
+                transaction.begin();
+            }
             em.persist(usuario);
-            em.getTransaction().commit();
+            if (transaction != null) {
+                transaction.commit();
+            }
             return usuario;
         } catch (PersistenceException ex) {
             ex.printStackTrace();
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
             }
             return null;
         }
     }
-
     public User buscarUsuario(Long id) {
         try {
             return em.find(User.class, id);
@@ -107,4 +111,16 @@ public class UserService {
         usuario.setNivelAcesso(nivelAcesso);
         return usuario;
     }
+      
+    public List<User> buscarUsuariosPorEmail(String email) {
+    try {
+        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE LOWER(u.email) LIKE :email", User.class);
+        query.setParameter("email", "%" + email.toLowerCase() + "%");
+        return query.getResultList();
+    } catch (PersistenceException ex) {
+        System.out.println("Erro ao buscar usuários por email: " + ex.getMessage());
+        return null;
+    }
 }
+}
+

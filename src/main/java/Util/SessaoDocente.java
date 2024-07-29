@@ -8,20 +8,20 @@ package Util;
  *
  * @author Carla Morais
  */
-public class SessaoAdmin {
+public class SessaoDocente {
 
-    private static Long adminId;
+    private static Long docenteID;
 
-    public static void setAdminId(Long id) {
-        adminId = id;
+    public static void setdocenteId(Long id) {
+        docenteID = id;
     }
 
-    public static Long getAdminId() {
-        return adminId;
+    public static Long getdocenteId() {
+        return docenteID;
     }
 
     public static void clear() {
-        adminId = null;
+        docenteID = null;
     }
 }
 

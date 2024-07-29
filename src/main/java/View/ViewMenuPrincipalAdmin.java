@@ -112,10 +112,10 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         );
         jDesktop1Layout.setVerticalGroup(
             jDesktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
+            .addGap(0, 416, Short.MAX_VALUE)
         );
 
-        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/home.png"))); // NOI18N
+        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/icons8-dashboard-50 (1).png"))); // NOI18N
         Sair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SairMouseClicked(evt);
@@ -142,6 +142,11 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         jMenu2.add(jMenu4);
 
         jMenu10.setText("Informações Pessoais");
+        jMenu10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu10MouseClicked(evt);
+            }
+        });
         jMenu2.add(jMenu10);
 
         jMenuBar1.add(jMenu2);
@@ -433,7 +438,7 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
         // TODO add your handling code here:
           jDesktop1.removeAll();
-        ViewMudarSenha senha = new    ViewMudarSenha();
+        ViewMudarSenhaAdmin senha = new    ViewMudarSenhaAdmin();
          jDesktop1.add(senha).setVisible(true);
     }//GEN-LAST:event_jMenu4MouseClicked
 
@@ -449,6 +454,13 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
     ViewUsuariosCadastrados usuarios = new ViewUsuariosCadastrados();
     jDesktop1.add(usuarios).setVisible(true);
     }//GEN-LAST:event_jMenu11MouseClicked
+
+    private void jMenu10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu10MouseClicked
+        // TODO add your handling code here:
+        jDesktop1.removeAll();
+        InformacoesAdmin abrir = new InformacoesAdmin();
+        jDesktop1.add(abrir).setVisible(true);
+    }//GEN-LAST:event_jMenu10MouseClicked
 
     
     /**

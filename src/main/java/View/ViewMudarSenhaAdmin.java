@@ -4,8 +4,6 @@
  */
 package View;
 
-import Model.Admin;
-import Model.User;
 import Service.AdminService;
 import Util.SessaoAdmin;
 import javax.persistence.EntityManager;
@@ -17,12 +15,12 @@ import javax.swing.JOptionPane;
  *
  * @author Carla Morais
  */
-public class ViewMudarSenha extends javax.swing.JInternalFrame {
+public class ViewMudarSenhaAdmin extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ViewMudarSenha
      */
-    public ViewMudarSenha() {
+    public ViewMudarSenhaAdmin() {
         initComponents();
     }
 

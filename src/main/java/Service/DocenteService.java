@@ -172,4 +172,40 @@ public class DocenteService {
          
         }
     }
+    
+    public boolean atualizarSenhaDocente(Long docenteid, String novaSenha) {
+    EntityTransaction transaction = em.getTransaction();
+    try {
+        transaction.begin();
+        Docente  docente = em.find(Docente.class, docenteid);
+        if (docente == null) {
+            System.out.println("Docente com ID " + docente + " não encontrado.");
+            transaction.rollback();
+            return false;
+        }
+
+        User usuario = docente.getUsuario();
+        if (usuario == null) {
+            System.out.println("Usuário associado ao docente com ID " + docenteid + " não encontrado.");
+            transaction.rollback();
+            return false;
+        }
+
+        usuario.setSenha(novaSenha);
+        em.merge(usuario);
+        transaction.commit();
+        System.out.println("Senha atualizada com sucesso para o usuário com ID " + docenteid);
+        return true;
+    } catch (PersistenceException ex) {
+        System.out.println("Erro ao atualizar a senha: " + ex.getMessage());
+        if (transaction.isActive()) {
+            transaction.rollback();
+        }
+        return false;
+    } finally {
+        if (em != null && em.isOpen()) {
+            em.close();
+        }
+    }
+}
 }

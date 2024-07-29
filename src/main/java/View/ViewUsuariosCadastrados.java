@@ -5,6 +5,7 @@
 package View;
 
 import Controller.UserController;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +19,7 @@ public class ViewUsuariosCadastrados extends javax.swing.JInternalFrame {
      */
     public ViewUsuariosCadastrados() {
         initComponents();
-        Tabelauser();
+      
     }
 
     /**
@@ -51,13 +52,13 @@ public class ViewUsuariosCadastrados extends javax.swing.JInternalFrame {
 
         TabelaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nome", "Tipo", "E-mail", "Telefone"
+                "Id", "E-mail", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(TabelaUsuarios);
@@ -100,13 +101,22 @@ public class ViewUsuariosCadastrados extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarActionPerformed
-        // TODO add your handling code here:
+        buscarUsuario();
     }//GEN-LAST:event_btnProcurarActionPerformed
 
-    private void Tabelauser(){
-        DefaultTableModel modeloTabela = new DefaultTableModel();
-        UserController user = new UserController();
-        user.exibirUsusarios(modeloTabela);
+      private void buscarUsuario() {
+        DefaultTableModel TabelaUser = (DefaultTableModel) TabelaUsuarios.getModel();
+        UserController userController = new UserController();
+        String email = textProcurar.getText();
+        if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, insira um email para buscar.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Atualiza a tabela com os resultados da busca
+          TabelaUser.setRowCount(0);
+          userController.buscarUsuariosPorEmail(email, TabelaUser);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

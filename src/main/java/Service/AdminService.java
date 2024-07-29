@@ -6,7 +6,8 @@ package Service;
 
 
 
-import Model.Admin;
+import Model.Administrador;
+import Model.Administrador;
 import Model.User;
 import Util.Connection;
 import java.util.List;
@@ -34,10 +35,12 @@ public class AdminService {
         this.userService = new UserService(em);
     }
 
-    public boolean salvarAdmin(Admin admin) {
+    public boolean salvarAdmin(Administrador admin) {
         EntityTransaction transaction = em.getTransaction();
         try {
-            transaction.begin();
+            if (!transaction.isActive()) {
+                transaction.begin();
+            }
             em.persist(admin);
             transaction.commit();
             return true;
@@ -50,14 +53,14 @@ public class AdminService {
         }
     }
 
-    public Admin buscarPorID(Long id) {
+    public Administrador buscarPorID(Long id) {
         if (id == null) {
             System.out.println("ID fornecido é nulo.");
             return null;
         }
 
         try {
-            Admin admin = em.find(Admin.class, id);
+            Administrador admin = em.find(Administrador.class, id);
             if (admin == null) {
                 System.out.println("Administrador com ID " + id + " não encontrado.");
             } else {
@@ -70,12 +73,36 @@ public class AdminService {
             return null;
         }
     }
-
-    public boolean atualizarDados(Long id, Admin dadosAtualizados) {
+public boolean updateAdmin(Administrador admin) {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
-            Admin adminExistente = em.find(Admin.class, id);
+
+          Administrador adminExistente = em.find(Administrador.class, admin.getId());
+            if (adminExistente != null) {
+                em.merge(admin);
+                transaction.commit();
+                return true;
+            } else {
+                System.out.println("O Docente com ID " + admin.getId() + " não foi encontrado");
+                return false;
+            }
+        } catch (PersistenceException ex) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Erro na Classe AdminService no método updateAdmin: " + ex.getMessage());
+            return false;
+        } finally {
+            // Não fechar o EntityManager se for gerenciado pelo contêiner
+        }
+    }
+
+    public boolean atualizarDados(Long id, Administrador dadosAtualizados) {
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Administrador adminExistente = em.find(Administrador.class, id);
             if (adminExistente != null) {
                 adminExistente.setNome(dadosAtualizados.getNome());
                 adminExistente.setEmail(dadosAtualizados.getEmail());
@@ -101,7 +128,7 @@ public class AdminService {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
-            Admin adminParaExcluir = em.find(Admin.class, id);
+            Administrador adminParaExcluir = em.find(Administrador.class, id);
             if (adminParaExcluir != null) {
                 em.remove(adminParaExcluir);
                 transaction.commit();
@@ -120,37 +147,42 @@ public class AdminService {
         }
     }
 
-    public boolean cadastrarAdminComUsuario(Admin admin, User usuario) {
+     public boolean cadastrarAdminComUsuario(Administrador admin, User usuario) {
         EntityTransaction transaction = em.getTransaction();
         try {
-           
+            transaction.begin();
+
+            User novoUsuario = userService.cadastrarUsuario(usuario);
+            if (novoUsuario == null) {
+                throw new PersistenceException("Falha ao cadastrar o usuário.");
+            }
+
+            admin.setUsuario(novoUsuario);
             if (admin.getId() != 0) {
                 em.merge(admin);
             } else {
                 em.persist(admin);
             }
-             transaction.begin();
-            User novoUsuario = userService.cadastrarUsuario(usuario);
-            admin.setUsuario(novoUsuario);
-            em.merge(admin);
+
             transaction.commit();
             return true;
-        }catch(PersistenceException ex){
-            System.out.println("Erro na classe AdminService ao cadastrar Admin com usuároo"+ex);
-             
+        } catch (PersistenceException ex) {
+            System.out.println("Erro na Classe AdminService ao cadastrar Admin com usuário: " + ex.getMessage());
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
             return false;
-        }finally{
-            if(em!=null && em.isOpen())
-              em.close();
         }
-        
     }
+
+
+
     
     
 
-    public List<Admin> listarAdmin() {
+    public List<Administrador> listarAdmin() {
         try {
-            TypedQuery<Admin> query = em.createQuery("SELECT a FROM Admin a", Admin.class);
+            TypedQuery<Administrador> query = em.createQuery("SELECT a FROM Administrador a", Administrador.class);
             return query.getResultList();
         } catch (PersistenceException ex) {
             System.out.println("Erro na Classe AdminService ao listar administradores: " + ex.getMessage());
@@ -212,7 +244,7 @@ public boolean atualizarSenhaAdmin(Long adminId, String novaSenha) {
     EntityTransaction transaction = em.getTransaction();
     try {
         transaction.begin();
-        Admin admin = em.find(Admin.class, adminId);
+        Administrador  admin = em.find(Administrador.class, adminId);
         if (admin == null) {
             System.out.println("Administrador com ID " + adminId + " não encontrado.");
             transaction.rollback();

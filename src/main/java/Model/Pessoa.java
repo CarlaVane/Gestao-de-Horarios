@@ -14,15 +14,14 @@ public abstract class Pessoa implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+     long id;
 
     protected String nome;
     protected String email;
     protected String telefone;
 
     public Pessoa() {
-
     }
 
     public Pessoa(String nome, String email, String telefone) {

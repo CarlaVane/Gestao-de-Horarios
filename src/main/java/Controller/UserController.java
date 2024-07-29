@@ -4,9 +4,9 @@
  */
 package Controller;
 
-import Model.GeradorSenha;
 import Model.User;
 import Service.UserService;
+import Util.GeradorSenha;
 import Util.Role;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -61,19 +61,20 @@ public class UserController {
 
     }
 
-    public void exibirUsusarios(DefaultTableModel modeloTabela) {
-        List<User> listUser = this.userService.listarUsuarios();
+    
+    public void buscarUsuariosPorEmail(String email, DefaultTableModel modeloTabela) {
+    List<User> listUser = this.userService.buscarUsuariosPorEmail(email);
 
-        if (listUser != null && !listUser.isEmpty()) {
-            modeloTabela.setRowCount(0);
+    if (listUser != null && !listUser.isEmpty()) {
+        modeloTabela.setRowCount(0);
 
-            for (User usuario : listUser) {
-                Object[] dados = {};
-                modeloTabela.addRow(dados);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Não usuários para exibir");
+        for (User usuario : listUser) {
+            Object[] dados = {usuario.getId(), usuario.getEmail(), usuario.getNivelAcesso()};
+            modeloTabela.addRow(dados);
         }
+    } else {
+        JOptionPane.showMessageDialog(null, "Não há usuários para exibir.");
     }
+}
 
 }

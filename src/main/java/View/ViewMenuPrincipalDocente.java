@@ -5,19 +5,21 @@
 package View;
 
 import Controller.AdminController;
+import Util.Role;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Carla Morais
  */
-public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
+public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewMenuPrincipal
      */
-    public ViewMenuPrincipalAdmin() {
+    public ViewMenuPrincipalDocente() {
         initComponents(); 
+        configurarPermissoes();
        
     }
 
@@ -36,26 +38,25 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jDesktop1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        Sair = new javax.swing.JMenu();
+        Dashboard = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
+        MenuSair = new javax.swing.JMenu();
+        MenuMudarSenha = new javax.swing.JMenu();
+        MenuInformações = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         MenuDocente = new javax.swing.JMenu();
         MenuCadeira = new javax.swing.JMenu();
         MenuSala = new javax.swing.JMenuItem();
         MenuCurso = new javax.swing.JMenu();
-        MenuUser = new javax.swing.JMenu();
+        MenuAdmin = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         MenuHorario = new javax.swing.JMenuItem();
         MenuMarcacaoAula = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
+        MenuVisualizarHorario = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
-        jMenu11 = new javax.swing.JMenu();
-        jMenu12 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        MenuUserCadastrados = new javax.swing.JMenu();
+        MenuRelatorios = new javax.swing.JMenu();
+        MenuSobre = new javax.swing.JMenu();
 
         jPanel8.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -112,37 +113,47 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         );
         jDesktop1Layout.setVerticalGroup(
             jDesktop1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
+            .addGap(0, 416, Short.MAX_VALUE)
         );
 
-        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/home.png"))); // NOI18N
-        Sair.addMouseListener(new java.awt.event.MouseAdapter() {
+        Dashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/icons8-dashboard-50 (1).png"))); // NOI18N
+        Dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SairMouseClicked(evt);
+                DashboardMouseClicked(evt);
             }
         });
-        jMenuBar1.add(Sair);
+        Dashboard.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                DashboardPropertyChange(evt);
+            }
+        });
+        jMenuBar1.add(Dashboard);
 
         jMenu2.setText("Sistema");
 
-        jMenu1.setText("Logout");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuSair.setText("Logout");
+        MenuSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                MenuSairMouseClicked(evt);
             }
         });
-        jMenu2.add(jMenu1);
+        jMenu2.add(MenuSair);
 
-        jMenu4.setText("Mudar Senha");
-        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuMudarSenha.setText("Mudar Senha");
+        MenuMudarSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu4MouseClicked(evt);
+                MenuMudarSenhaMouseClicked(evt);
             }
         });
-        jMenu2.add(jMenu4);
+        jMenu2.add(MenuMudarSenha);
 
-        jMenu10.setText("Informações Pessoais");
-        jMenu2.add(jMenu10);
+        MenuInformações.setText("Informações Pessoais");
+        MenuInformações.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuInformaçõesMouseClicked(evt);
+            }
+        });
+        jMenu2.add(MenuInformações);
 
         jMenuBar1.add(jMenu2);
 
@@ -214,13 +225,14 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         });
         jMenu3.add(MenuCurso);
 
-        MenuUser.setText("Administrador");
-        MenuUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/admin_user_icon_217189 (1).png"))); // NOI18N
+        MenuAdmin.setText("Administrador");
+        MenuAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuUserMouseClicked(evt);
+                MenuAdminMouseClicked(evt);
             }
         });
-        jMenu3.add(MenuUser);
+        jMenu3.add(MenuAdmin);
 
         jMenuBar1.add(jMenu3);
 
@@ -254,42 +266,38 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         });
         jMenu5.add(MenuMarcacaoAula);
 
-        jMenu7.setText("Visualização de horário");
-
-        jMenu8.setText("Docente");
-        jMenu7.add(jMenu8);
-
-        jMenu5.add(jMenu7);
+        MenuVisualizarHorario.setText("Visualização de horário");
+        jMenu5.add(MenuVisualizarHorario);
 
         jMenuBar1.add(jMenu5);
 
         jMenu9.setText("Consulta e Relatórios");
 
-        jMenu11.setText("Visualização de Usuários Cadastrados");
-        jMenu11.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuUserCadastrados.setText("Visualização de Usuários Cadastrados");
+        MenuUserCadastrados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu11MouseClicked(evt);
+                MenuUserCadastradosMouseClicked(evt);
             }
         });
-        jMenu9.add(jMenu11);
+        jMenu9.add(MenuUserCadastrados);
 
-        jMenu12.setText("Relatórios de horários disponíveis");
-        jMenu9.add(jMenu12);
+        MenuRelatorios.setText("Relatórios de horários disponíveis");
+        jMenu9.add(MenuRelatorios);
 
         jMenuBar1.add(jMenu9);
 
-        jMenu6.setText("Sobre");
-        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuSobre.setText("Sobre");
+        MenuSobre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu6MouseClicked(evt);
+                MenuSobreMouseClicked(evt);
             }
         });
-        jMenu6.addActionListener(new java.awt.event.ActionListener() {
+        MenuSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu6ActionPerformed(evt);
+                MenuSobreActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu6);
+        jMenuBar1.add(MenuSobre);
 
         setJMenuBar(jMenuBar1);
 
@@ -308,31 +316,21 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MenuMarcacaoAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMarcacaoAulaActionPerformed
-        jDesktop1.removeAll();
-        ViewCadastroAula aula = new ViewCadastroAula();
-        jDesktop1.add(aula).setVisible(true);
-    }//GEN-LAST:event_MenuMarcacaoAulaActionPerformed
-
     private void MenuDocenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuDocenteMouseClicked
       jDesktop1.removeAll();
         ViewCadastroDocente docente = new    ViewCadastroDocente();
          jDesktop1.add(docente).setVisible(true);
     }//GEN-LAST:event_MenuDocenteMouseClicked
 
-    private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
-      
-    
-    jDesktop1.removeAll();
-    HomeAdmin admin = new HomeAdmin();
-    jDesktop1.add(admin).setVisible(true);
-    }//GEN-LAST:event_SairMouseClicked
+    private void DashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashboardMouseClicked
+
+        jDesktop1.removeAll();
+        HomeAdmin admin = new HomeAdmin();
+        jDesktop1.add(admin).setVisible(true);
+    }//GEN-LAST:event_DashboardMouseClicked
 
     private void MenuCadeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadeiraActionPerformed
-        jDesktop1.removeAll();
-        ViewCadastroCadeira cadeira = new ViewCadastroCadeira();
-
-        jDesktop1.add(cadeira).setVisible(true);
+   
     }//GEN-LAST:event_MenuCadeiraActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
@@ -366,12 +364,6 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu3ActionPerformed
 
-    private void MenuMarcacaoAulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuMarcacaoAulaMouseClicked
-        // TODO add your handling code here:
-        
-
-    }//GEN-LAST:event_MenuMarcacaoAulaMouseClicked
-
     private void MenuHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHorarioActionPerformed
         // TODO add your handling code here:
          jDesktop1.removeAll();
@@ -401,7 +393,7 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         jDesktop1.add(sala).setVisible(true);
     }//GEN-LAST:event_MenuSalaMouseClicked
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void MenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuSairMouseClicked
        AdminController admin = new AdminController();
       
                
@@ -414,41 +406,84 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
             dispose();
 
     }
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_MenuSairMouseClicked
 
-    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+    private void MenuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuSobreMouseClicked
         // TODO add your handling code here:
          jDesktop1.removeAll();
         ViewSobre sobre = new ViewSobre();
         jDesktop1.add(sobre).setVisible(true);
-    }//GEN-LAST:event_jMenu6MouseClicked
+    }//GEN-LAST:event_MenuSobreMouseClicked
 
-    private void jMenu6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu6ActionPerformed
+    private void MenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSobreActionPerformed
         // TODO add your handling code here:
          jDesktop1.removeAll();
         ViewSobre sobre = new ViewSobre();
         jDesktop1.add(sobre).setVisible(true);
-    }//GEN-LAST:event_jMenu6ActionPerformed
+    }//GEN-LAST:event_MenuSobreActionPerformed
 
-    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+    private void MenuMudarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuMudarSenhaMouseClicked
         // TODO add your handling code here:
           jDesktop1.removeAll();
-        ViewMudarSenha senha = new    ViewMudarSenha();
+        ViewMudarSenhaDocente senha = new    ViewMudarSenhaDocente();
          jDesktop1.add(senha).setVisible(true);
-    }//GEN-LAST:event_jMenu4MouseClicked
+    }//GEN-LAST:event_MenuMudarSenhaMouseClicked
 
-    private void MenuUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUserMouseClicked
+    private void MenuAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAdminMouseClicked
         // TODO add your handling code here:
         jDesktop1.removeAll();
         ViewCadastroUser user = new ViewCadastroUser();
         jDesktop1.add(user).setVisible(true);
-    }//GEN-LAST:event_MenuUserMouseClicked
+    }//GEN-LAST:event_MenuAdminMouseClicked
 
-    private void jMenu11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu11MouseClicked
+    private void MenuUserCadastradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuUserCadastradosMouseClicked
     jDesktop1.removeAll();
     ViewUsuariosCadastrados usuarios = new ViewUsuariosCadastrados();
     jDesktop1.add(usuarios).setVisible(true);
-    }//GEN-LAST:event_jMenu11MouseClicked
+    }//GEN-LAST:event_MenuUserCadastradosMouseClicked
+
+    private void MenuInformaçõesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuInformaçõesMouseClicked
+        // TODO add your handling code here:
+        jDesktop1.removeAll();
+        InformacoesDocente abrir = new InformacoesDocente();
+        jDesktop1.add(abrir).setVisible(true);
+    }//GEN-LAST:event_MenuInformaçõesMouseClicked
+
+    private void MenuMarcacaoAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuMarcacaoAulaActionPerformed
+        jDesktop1.removeAll();
+        ViewCadastroAula aula = new ViewCadastroAula();
+        jDesktop1.add(aula).setVisible(true);
+    }//GEN-LAST:event_MenuMarcacaoAulaActionPerformed
+
+    private void MenuMarcacaoAulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuMarcacaoAulaMouseClicked
+     
+
+    }//GEN-LAST:event_MenuMarcacaoAulaMouseClicked
+
+    private void DashboardPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_DashboardPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DashboardPropertyChange
+
+    
+    private void configurarPermissoes() {
+    // Obter o nível de acesso do usuário logado
+        MenuVisualizarHorario.setEnabled(true);
+        MenuMudarSenha.setEnabled(true);
+        MenuDocente.setEnabled(false);
+        MenuCurso.setEnabled(false);
+        MenuInformações.setEnabled(true);
+        MenuSobre.setEnabled(true);
+        MenuSala.setEnabled(false);
+        MenuUserCadastrados.setEnabled(false);
+        MenuHorario.setEnabled(false);
+        MenuSair.setEnabled(true);
+        MenuCadeira.setEnabled(false);
+        MenuMarcacaoAula.setEnabled(false);
+        MenuSobre.setEnabled(true);
+        MenuAdmin.setEnabled(false);
+        MenuRelatorios.setEnabled(false);
+        Dashboard.setEnabled(false);
+    }
 
     
     /**
@@ -468,21 +503,27 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewMenuPrincipalAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMenuPrincipalDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewMenuPrincipalAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMenuPrincipalDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewMenuPrincipalAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMenuPrincipalDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewMenuPrincipalAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewMenuPrincipalDocente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewMenuPrincipalAdmin().setVisible(true);
+                new ViewMenuPrincipalDocente().setVisible(true);
             }
         });
     }
@@ -490,28 +531,27 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu Dashboard;
+    private javax.swing.JMenu MenuAdmin;
     private javax.swing.JMenu MenuCadeira;
     private javax.swing.JMenu MenuCurso;
     private javax.swing.JMenu MenuDocente;
     private javax.swing.JMenuItem MenuHorario;
+    private javax.swing.JMenu MenuInformações;
     private javax.swing.JMenuItem MenuMarcacaoAula;
+    private javax.swing.JMenu MenuMudarSenha;
+    private javax.swing.JMenu MenuRelatorios;
+    private javax.swing.JMenu MenuSair;
     private javax.swing.JMenuItem MenuSala;
-    private javax.swing.JMenu MenuUser;
-    private javax.swing.JMenu Sair;
+    private javax.swing.JMenu MenuSobre;
+    private javax.swing.JMenu MenuUserCadastrados;
+    private javax.swing.JMenu MenuVisualizarHorario;
     private javax.swing.JPanel jDesktop1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel7;

@@ -4,10 +4,10 @@
  */
 package View;
 
-import Model.Admin;
-import Model.User;
 import Service.AdminService;
+import Service.DocenteService;
 import Util.SessaoAdmin;
+import Util.SessaoDocente;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author Carla Morais
  */
-public class ViewMudarSenha extends javax.swing.JInternalFrame {
+public class ViewMudarSenhaDocente extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ViewMudarSenha
      */
-    public ViewMudarSenha() {
+    public ViewMudarSenhaDocente() {
         initComponents();
     }
 
@@ -143,8 +143,8 @@ private void salvarSenha() {
         return;
     }
 
-    Long adminId = SessaoAdmin.getAdminId();
-    if (adminId == null) {
+    Long docenteId = SessaoDocente.getdocenteId();
+    if (docenteId == null) {
         JOptionPane.showMessageDialog(null, "Você precisa estar logado para atualizar a senha.");
         return;
     }
@@ -156,12 +156,12 @@ private void salvarSenha() {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("MeuSistema-jpa");
     EntityManager em = emf.createEntityManager();
-    AdminService adminService = new AdminService(em);
+    DocenteService docenteService = new DocenteService(em);
 
     // Log para confirmar o ID do administrador logado
-    System.out.println("Atualizando senha para o admin com ID: " + adminId);
+    System.out.println("Atualizando senha para o admin com ID: " + docenteId);
 
-    if (adminService.atualizarSenhaAdmin(adminId, confirmarSenha)) {
+    if (docenteService.atualizarSenhaDocente(docenteId, confirmarSenha)) {
         JOptionPane.showMessageDialog(null, "Senha atualizada com sucesso.");
     } else {
         JOptionPane.showMessageDialog(null, "Erro ao atualizar a senha.");

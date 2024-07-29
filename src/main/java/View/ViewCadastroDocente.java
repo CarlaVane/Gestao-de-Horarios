@@ -8,7 +8,7 @@ import Controller.CadeiraController;
 import Controller.DocenteController;
 import Model.Cadeira;
 import Model.Docente;
-import Model.GeradorSenha;
+import Util.GeradorSenha;
 import Model.User;
 import Service.DocenteService;
 import Util.Connection;
