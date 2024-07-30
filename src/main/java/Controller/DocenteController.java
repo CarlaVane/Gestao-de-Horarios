@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.Aula;
 import Model.Docente;
 import Util.Role;
 import Model.User;
@@ -96,6 +97,8 @@ public class DocenteController {
             JOptionPane.showMessageDialog(null, "Não há Docente para exibir");
         }
     }
+    
+    
 
     public void exibirDocente(DefaultTableModel modeloTabela) {
         List<Docente> listDocente = this.docenteService.listarDocentes();
@@ -120,4 +123,5 @@ public class DocenteController {
             JOptionPane.showMessageDialog(null, "Não há Docentes para exibir.");
         }
     }
+    
 }

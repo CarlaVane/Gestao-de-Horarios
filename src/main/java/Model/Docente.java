@@ -15,7 +15,7 @@ public class Docente extends Pessoa implements Serializable {
     private String especializacao;
     private int experiencia;
     private String endereco;
-    private Long id;
+  
 
     @ManyToOne
     private Cadeira cadeira;

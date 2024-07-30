@@ -1,9 +1,12 @@
 package Service;
 
+import Model.Aula;
 import Model.Cadeira;
 import Model.Docente;
 import Model.User;
 import Util.Connection;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -110,8 +113,7 @@ public class DocenteService {
             }
             return false;
         } finally {
-       
-            
+
         }
     }
 
@@ -120,32 +122,27 @@ public class DocenteService {
         try {
             transaction.begin();
 
-           
-            
             Cadeira cadeira = docente.getCadeira();
             if (cadeira != null) {
-                if (cadeira.getId() != 0) { 
-                    
+                if (cadeira.getId() != 0) {
+
                     cadeira = em.merge(cadeira);
-                    
+
                 } else {
-                    em.persist(cadeira); 
-                    
+                    em.persist(cadeira);
+
                 }
             }
 
-            if (docente.getId() != 0) { 
+            if (docente.getId() != 0) {
                 docente = em.merge(docente);
             } else {
                 em.persist(docente);
             }
 
-         
-            
             User novoUsuario = userService.cadastrarUsuario(usuario);
             docente.setUsuario(novoUsuario);
 
-         
             em.merge(docente);
 
             transaction.commit();
@@ -157,7 +154,7 @@ public class DocenteService {
             }
             return false;
         } finally {
-       
+
         }
     }
 
@@ -169,43 +166,76 @@ public class DocenteService {
             System.out.println("Erro na Classe DocenteService ao listar docentes: " + ex.getMessage());
             return null;
         } finally {
-         
+
         }
     }
-    
+
     public boolean atualizarSenhaDocente(Long docenteid, String novaSenha) {
-    EntityTransaction transaction = em.getTransaction();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Docente docente = em.find(Docente.class, docenteid);
+            if (docente == null) {
+                System.out.println("Docente com ID " + docente + " não encontrado.");
+                transaction.rollback();
+                return false;
+            }
+
+            User usuario = docente.getUsuario();
+            if (usuario == null) {
+                System.out.println("Usuário associado ao docente com ID " + docenteid + " não encontrado.");
+                transaction.rollback();
+                return false;
+            }
+
+            usuario.setSenha(novaSenha);
+            em.merge(usuario);
+            transaction.commit();
+            System.out.println("Senha atualizada com sucesso para o usuário com ID " + docenteid);
+            return true;
+        } catch (PersistenceException ex) {
+            System.out.println("Erro ao atualizar a senha: " + ex.getMessage());
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            return false;
+        } finally {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+
+    }
+
+public List<Aula> ListasHorarios(Long docenteId, Date data) {
     try {
-        transaction.begin();
-        Docente  docente = em.find(Docente.class, docenteid);
-        if (docente == null) {
-            System.out.println("Docente com ID " + docente + " não encontrado.");
-            transaction.rollback();
-            return false;
-        }
+        // Configura o intervalo de datas para o dia inteiro
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(data);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        Date startDate = calendar.getTime();
+        
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        Date endDate = calendar.getTime();
 
-        User usuario = docente.getUsuario();
-        if (usuario == null) {
-            System.out.println("Usuário associado ao docente com ID " + docenteid + " não encontrado.");
-            transaction.rollback();
-            return false;
-        }
+        // Cria a consulta JPQL
+        TypedQuery<Aula> query = em.createQuery(
+            "SELECT a FROM Aula a WHERE a.docente.id = :docenteId AND a.horario.horaInicio <= :endDate AND a.horario.horaFim >= :startDate", Aula.class);
+        query.setParameter("docenteId", docenteId);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
 
-        usuario.setSenha(novaSenha);
-        em.merge(usuario);
-        transaction.commit();
-        System.out.println("Senha atualizada com sucesso para o usuário com ID " + docenteid);
-        return true;
-    } catch (PersistenceException ex) {
-        System.out.println("Erro ao atualizar a senha: " + ex.getMessage());
-        if (transaction.isActive()) {
-            transaction.rollback();
-        }
-        return false;
-    } finally {
-        if (em != null && em.isOpen()) {
-            em.close();
-        }
+        return query.getResultList();
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
     }
 }
+
+
+   
 }

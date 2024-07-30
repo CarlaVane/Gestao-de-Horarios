@@ -59,8 +59,8 @@ View\ViewMenuPrincipalAdmin$13.class
 View\ViewMenuPrincipalDocente$4.class
 Service\DocenteService.class
 Model\Pessoa.class
-View\HomeAdmin.class
 View\ViewMenuPrincipalDocente$7.class
+View\ViewVisualizarHorarios.class
 View\ViewMenuPrincipalAdmin$4.class
 View\ViewMenuPrincipalAdmin$16.class
 View\ViewCadastroCurso.class
@@ -77,6 +77,7 @@ View\ViewCadastroAula$9.class
 Service\AulaService.class
 View\ViewSobre.class
 View\ViewCadastroHorario$3.class
+View\ViewMenuPrincipalDocente$25.class
 View\Login$4.class
 View\ViewMudarSenhaDocente.class
 View\ViewMenuPrincipalDocente$18.class
@@ -123,6 +124,7 @@ Util\SessaoAdmin.class
 Controller\CursoController.class
 View\ViewCadastroAula$5.class
 Controller\Sala_de_AulaController.class
+View\Viewdashboard.class
 Model\Curso.class
 View\ViewUsuariosCadastrados$1.class
 View\ViewCadastroCurso$3.class

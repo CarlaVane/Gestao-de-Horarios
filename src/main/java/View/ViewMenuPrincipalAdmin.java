@@ -329,7 +329,7 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
       
     
     jDesktop1.removeAll();
-    HomeAdmin admin = new HomeAdmin();
+    Viewdashboard admin = new Viewdashboard();
     jDesktop1.add(admin).setVisible(true);
     }//GEN-LAST:event_SairMouseClicked
 

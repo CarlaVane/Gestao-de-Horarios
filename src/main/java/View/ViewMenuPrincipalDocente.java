@@ -267,6 +267,11 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
         jMenu5.add(MenuMarcacaoAula);
 
         MenuVisualizarHorario.setText("Visualização de horário");
+        MenuVisualizarHorario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuVisualizarHorarioMouseClicked(evt);
+            }
+        });
         jMenu5.add(MenuVisualizarHorario);
 
         jMenuBar1.add(jMenu5);
@@ -325,7 +330,7 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
     private void DashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashboardMouseClicked
 
         jDesktop1.removeAll();
-        HomeAdmin admin = new HomeAdmin();
+        Viewdashboard admin = new Viewdashboard();
         jDesktop1.add(admin).setVisible(true);
     }//GEN-LAST:event_DashboardMouseClicked
 
@@ -464,6 +469,13 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DashboardPropertyChange
 
+    private void MenuVisualizarHorarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuVisualizarHorarioMouseClicked
+        // TODO add your handling code here:
+        jDesktop1.removeAll();
+        ViewVisualizarHorarios abrir = new ViewVisualizarHorarios();
+        jDesktop1.add(abrir).setVisible(true);
+    }//GEN-LAST:event_MenuVisualizarHorarioMouseClicked
+
     
     private void configurarPermissoes() {
     // Obter o nível de acesso do usuário logado
@@ -484,7 +496,8 @@ public class ViewMenuPrincipalDocente extends javax.swing.JFrame {
         MenuRelatorios.setEnabled(false);
         Dashboard.setEnabled(false);
     }
-
+    
+   
     
     /**
      * @param args the command line arguments
