@@ -85,4 +85,20 @@ public class HorarioController {
             JOptionPane.showMessageDialog(null, "Não há Cursos para exibir");
         }
     }
+    
+    
+     public void exibirHorarioss(DefaultTableModel modeloTabela) {
+        List<Horario> listHorario = this.horarioService.listarHorarios();
+
+        if (listHorario != null && !listHorario.isEmpty()) {
+            modeloTabela.setRowCount(0);
+
+            for (Horario horario : listHorario) {
+                Object[] dados = {horario.getId(), horario.getHoraInicio(), horario.getHoraFim(), horario.getPeriodo(), horario.getDia(),};
+                modeloTabela.addRow(dados);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Não há Cursos para exibir");
+        }
+    }
 }

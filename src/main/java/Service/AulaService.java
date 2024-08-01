@@ -6,7 +6,12 @@ package Service;
 
 import Model.Aula;
 import Util.Connection;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
@@ -107,8 +112,38 @@ public class AulaService {
     }
     
     
-  
+     public List<Aula> listarAulasDoDiaPorDocente(Long docenteId) {
+        List<Aula> todasAulas = listarAulasMarcadas();
+        List<Aula> aulasDoDia = new ArrayList<>();
 
+        DayOfWeek diaAtual = LocalDate.now().getDayOfWeek();
+        String diaAtualNome = diaAtual.getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
 
+        for (Aula aula : todasAulas) {
+           
+            if (docenteId.equals(aula.getDocente().getId()) && aula.getHorario().getDia().equalsIgnoreCase(diaAtualNome)) {
+                aulasDoDia.add(aula);
+            }
+        }
+
+        return aulasDoDia;
+    }
+
+     public List<Aula> listarAulasDoDia() {
+        List<Aula> todasAulas = listarAulasMarcadas();
+        List<Aula> aulasDoDia = new ArrayList<>();
+
+        DayOfWeek diaAtual = LocalDate.now().getDayOfWeek();
+        String diaAtualNome = diaAtual.getDisplayName(TextStyle.FULL, new Locale("pt", "BR"));
+
+        for (Aula aula : todasAulas) {
+           if (aula.getHorario().getDia().equalsIgnoreCase(diaAtualNome)){
+               aulasDoDia.add(aula);
+           }
+            
+        }
+
+        return aulasDoDia;
+    }
 
 }

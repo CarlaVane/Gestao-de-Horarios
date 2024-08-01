@@ -7,7 +7,11 @@ package Controller;
 import Model.Aula;
 import Service.AulaService;
 import View.ViewCadastroAula;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -68,4 +72,47 @@ public class AulaController {
         }
     }
    
+
+    public void exibirAulasDoDia(DefaultTableModel modeloTabela, Long docenteId) {
+        List<Aula> listAulas = this.aulaService.listarAulasDoDiaPorDocente(docenteId);
+
+        if (listAulas != null && !listAulas.isEmpty()) {
+            modeloTabela.setRowCount(0);
+
+            for (Aula aula : listAulas) {
+                Object[] dados = {
+                    aula.getId(),
+                    aula.getNome(),
+                    aula.getSaladeAula()+"-"+aula.getSaladeAula().getEdificio()+"-"+aula.getSaladeAula().getAndar(),
+                    aula.getHorario().getHoraInicio() + " - " + aula.getHorario().getHoraFim(),  // Exibe o horário de início e fim
+                    aula.getCadeira().getNome(),
+                    aula.getCurso().getNome()
+                };
+                modeloTabela.addRow(dados);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Não há aulas para exibir hoje");
+        }
+    }
+    
+    public void exibirAulasDoDiaAdmin(DefaultTableModel modeloTabela) {
+        List<Aula> listAulas = this.aulaService.listarAulasDoDia();
+
+        if (listAulas != null && !listAulas.isEmpty()) {
+            modeloTabela.setRowCount(0);
+
+            for (Aula aula : listAulas) {
+                Object[] dados = {
+                    aula.getSaladeAula()+"-"+aula.getSaladeAula().getEdificio()+"-"+aula.getSaladeAula().getAndar(),
+                    aula.getHorario().getHoraInicio() + " - " + aula.getHorario().getHoraFim(),  
+                    aula.getDocente().getNome()+ "-" +aula.getDocente().getEmail(),
+                    aula.getCadeira().getNome(),
+                    aula.getCurso().getNome()
+                };
+                modeloTabela.addRow(dados);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Não há aulas para exibir hoje");
+        }
+    }
 }

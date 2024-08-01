@@ -15,7 +15,6 @@ public class Docente extends Pessoa implements Serializable {
     private String especializacao;
     private int experiencia;
     private String endereco;
-  
 
     @ManyToOne
     private Cadeira cadeira;
@@ -26,8 +25,6 @@ public class Docente extends Pessoa implements Serializable {
     public Docente() {
         super();
     }
-    
-    
 
     public Docente(String especializacao, int experiencia, String endereco, Cadeira cadeira, User usuario) {
         super();
@@ -40,14 +37,14 @@ public class Docente extends Pessoa implements Serializable {
             this.usuario.setNivelAcesso(Role.DOCENTE);
         }
     }
-    
-      // Getter e Setter para id
+
     @Override
-    public long getId() { 
+    public long getId() {
         return id;
     }
+
     @Override
-    public void setId(long id) { 
+    public void setId(long id) {
         this.id = id;
     }
 

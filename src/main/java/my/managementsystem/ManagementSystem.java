@@ -20,11 +20,11 @@ public class ManagementSystem {
         HorarioController horario =  new HorarioController();
         horario.CriarView();
                 
-       Login login = new Login();
-        login.setVisible(true);
+      // Login login = new Login();
+       // login.setVisible(true);
 
-      //ViewMenuPrincipalAdmin abrir  = new ViewMenuPrincipalAdmin();
-      //abrir.setVisible(true);
+     ViewMenuPrincipalAdmin abrir  = new ViewMenuPrincipalAdmin();
+      abrir.setVisible(true);
         
     }
 

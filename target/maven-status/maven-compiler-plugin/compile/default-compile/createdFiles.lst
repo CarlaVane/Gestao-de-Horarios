@@ -8,6 +8,7 @@ View\Login$1.class
 View\ViewCadastroHorario$2.class
 Util\Connection.class
 View\ViewCadastroDocente$9.class
+View\ViewMenuPrincipalAdmin$24.class
 View\ViewMenuPrincipalDocente$8.class
 View\ViewCadastroCadeira$6.class
 View\ViewMenuPrincipalAdmin$17.class
@@ -66,6 +67,7 @@ View\ViewMenuPrincipalAdmin$16.class
 View\ViewCadastroCurso.class
 View\ViewCadastroHorario$4.class
 my\managementsystem\ManagementSystem.class
+View\ViewVisualizar.class
 Controller\AdminController.class
 View\Login$3.class
 Util\SessaoDocente.class

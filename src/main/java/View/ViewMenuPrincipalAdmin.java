@@ -219,6 +219,7 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         });
         jMenu3.add(MenuCurso);
 
+        MenuUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/imagens/admin_user_icon_217189 (1).png"))); // NOI18N
         MenuUser.setText("Administrador");
         MenuUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -279,6 +280,11 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         jMenu9.add(jMenu11);
 
         jMenu12.setText("Relatórios de horários disponíveis");
+        jMenu12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu12MouseClicked(evt);
+            }
+        });
         jMenu9.add(jMenu12);
 
         jMenuBar1.add(jMenu9);
@@ -461,6 +467,13 @@ public class ViewMenuPrincipalAdmin extends javax.swing.JFrame {
         InformacoesAdmin abrir = new InformacoesAdmin();
         jDesktop1.add(abrir).setVisible(true);
     }//GEN-LAST:event_jMenu10MouseClicked
+
+    private void jMenu12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu12MouseClicked
+        // TODO add your handling code here:
+        jDesktop1.removeAll();
+        ViewVisualizar abrir = new ViewVisualizar();
+        jDesktop1.add(abrir).setVisible(true);
+    }//GEN-LAST:event_jMenu12MouseClicked
 
     
     /**

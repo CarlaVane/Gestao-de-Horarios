@@ -35,10 +35,12 @@ public class DocenteService {
 
             Cadeira cadeira = docente.getCadeira();
             if (cadeira != null) {
-                if (cadeira.getId() != 0) { // Verifica se a cadeira já tem um ID (portanto, já existe)
-                    cadeira = em.merge(cadeira);  // Use merge para entidades existentes
+                if (cadeira.getId() != 0) {
+                    cadeira = em.merge(cadeira);  
+                    
                 } else {
-                    em.persist(cadeira);  // Persist apenas para novas entidades
+                    em.persist(cadeira); 
+                    
                 }
             }
 
@@ -52,7 +54,7 @@ public class DocenteService {
             }
             return false;
         } finally {
-            // Não fechar o EntityManager se for gerenciado pelo contêiner
+          
         }
     }
 
@@ -63,7 +65,7 @@ public class DocenteService {
             System.out.println("Erro na Classe DocenteService ao buscar por ID: " + ex.getMessage());
             return null;
         } finally {
-            // Não fechar o EntityManager se for gerenciado pelo contêiner
+       
         }
     }
 
@@ -88,7 +90,7 @@ public class DocenteService {
             System.out.println("Erro na Classe DocenteService no método updateDocente: " + ex.getMessage());
             return false;
         } finally {
-            // Não fechar o EntityManager se for gerenciado pelo contêiner
+          
         }
     }
 
@@ -207,35 +209,32 @@ public class DocenteService {
 
     }
 
-public List<Aula> ListasHorarios(Long docenteId, Date data) {
-    try {
-        // Configura o intervalo de datas para o dia inteiro
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(data);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        Date startDate = calendar.getTime();
-        
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        calendar.set(Calendar.MINUTE, 59);
-        calendar.set(Calendar.SECOND, 59);
-        Date endDate = calendar.getTime();
+    public List<Aula> ListasHorarios(Long docenteId, Date data) {
+        try {
 
-        // Cria a consulta JPQL
-        TypedQuery<Aula> query = em.createQuery(
-            "SELECT a FROM Aula a WHERE a.docente.id = :docenteId AND a.horario.horaInicio <= :endDate AND a.horario.horaFim >= :startDate", Aula.class);
-        query.setParameter("docenteId", docenteId);
-        query.setParameter("startDate", startDate);
-        query.setParameter("endDate", endDate);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(data);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            Date startDate = calendar.getTime();
 
-        return query.getResultList();
-    } catch (Exception e) {
-        e.printStackTrace();
-        return null;
+            calendar.set(Calendar.HOUR_OF_DAY, 23);
+            calendar.set(Calendar.MINUTE, 59);
+            calendar.set(Calendar.SECOND, 59);
+            Date endDate = calendar.getTime();
+
+            TypedQuery<Aula> query = em.createQuery(
+                    "SELECT a FROM Aula a WHERE a.docente.id = :docenteId AND a.horario.horaInicio <= :endDate AND a.horario.horaFim >= :startDate", Aula.class);
+            query.setParameter("docenteId", docenteId);
+            query.setParameter("startDate", startDate);
+            query.setParameter("endDate", endDate);
+
+            return query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-}
 
-
-   
 }

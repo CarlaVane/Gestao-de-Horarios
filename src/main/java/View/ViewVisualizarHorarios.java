@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.AulaController;
 import Model.Aula;
 import Model.Docente;
 import Service.DocenteService;
@@ -25,9 +26,13 @@ public class ViewVisualizarHorarios extends javax.swing.JInternalFrame {
      */
     private Docente docente;
     private Long docenteId;
+  
     public ViewVisualizarHorarios() {
         initComponents();
+        carregarDocente();
         CarregarDados();
+        preencherDados();
+       
         
     }
 
@@ -42,7 +47,11 @@ public class ViewVisualizarHorarios extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaHorario = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        textnome = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setTitle("Horário do dia");
@@ -55,75 +64,95 @@ public class ViewVisualizarHorarios extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Nome", "Disciplina", "Sala", "Hora de Início", "Hora de Término"
+                "id", "Nome", "Sala de Aula", "Horário", "Cadeira", "Curso"
             }
         ));
         jScrollPane1.setViewportView(TabelaHorario);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Horário do dia");
+
+        jLabel2.setText("Este é o seu horário para o dia de hoje docente,");
+
+        textnome.setForeground(new java.awt.Color(102, 204, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel2)
+                        .addGap(1, 1, 1)
+                        .addComponent(textnome, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(24, 24, 24)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textnome, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-     private void CarregarDados(){
-        
-        Date data = new Date(); // Você pode modificar a data conforme necessário
-        DefaultTableModel modeloTabela = (DefaultTableModel) TabelaHorario.getModel();
-        ExibirHorarios(modeloTabela, docenteId, data);
-    }
-        
-     
-       private void carregarDocente() {
-       Long docenteId = SessaoDocente.getdocenteId();
-    if (docenteId != null) {
-        DocenteService docenteService = new DocenteService();
-        this.docente = docenteService.buscarDocente(docenteId);
-        if (this.docente != null) {
-            // Exibir ou usar os dados do docente conforme necessário
-        }
-    } else {
-        // Lidar com o caso onde docenteId é nulo, se necessário
-    }
-    }
-    
- public void ExibirHorarios(DefaultTableModel modeloTabela, Long docenteId, Date data) {
-     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        DocenteService docenteService = new DocenteService();
-        List<Aula> aulas = docenteService.ListasHorarios(docenteId, data);
+    private void CarregarDados() {
 
       
+        DefaultTableModel modeloTabela = (DefaultTableModel) TabelaHorario.getModel();
+        Long docenteId = SessaoDocente.getdocenteId();
+        AulaController aula = new AulaController();
+        aula.exibirAulasDoDia(modeloTabela,docenteId);
+    }
 
-        if (aulas != null) {
-            for (Aula aula : aulas) {
-                Object[] dados = {
-                    aula.getId(),
-                    aula.getNome(), // Adicione o nome da aula, se aplicável
-                    aula.getCadeira() != null ? aula.getCadeira().getNome() : "N/A",
-                    aula.getSaladeAula() != null ? aula.getSaladeAula().getNomeSala() : "N/A",
-                    aula.getHorario() != null ? sdf.format(aula.getHorario().getHoraInicio() ): "N/A",
-                    aula.getHorario() != null ?sdf.format( aula.getHorario().getHoraFim()) : "N/A"
-                };
-                modeloTabela.addRow(dados);
+    private void carregarDocente() {
+        Long docenteId = SessaoDocente.getdocenteId();
+        if (docenteId != null) {
+            DocenteService docenteService = new DocenteService();
+            this.docente = docenteService.buscarDocente(docenteId);
+            if (this.docente != null) {
+
             }
+        } else {
+
         }
     }
+       private void preencherDados() {
+        if (docente != null) {
+            textnome.setText(docente.getNome());
+            
+
+        }
+    }
+    
+    
+    
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaHorario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel textnome;
     // End of variables declaration//GEN-END:variables
 }
